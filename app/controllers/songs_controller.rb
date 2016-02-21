@@ -9,11 +9,34 @@ class SongsController <ApplicationController
     @artist = Artist.find(params[:artist_id])
     @song = @artist.songs.create(song_params)
 
-    redirect_to song_path(@song)
+    if @song.save
+      redirect_to song_path(@song)
+    else
+      render :new
+    end
   end
 
   def show
     @song = Song.find(params[:id])
+  end
+
+  def edit
+    @song = Song.find(params[:id])
+  end
+
+  def update
+    @song = Song.find(params[:id])
+
+    if @song.update(song_params)
+      redirect_to @song
+    else
+      render :edit
+    end
+  end
+
+  def index
+    @artist = Artist.find(params[:artist_id])
+    @songs = Song.all
   end
 
   private
