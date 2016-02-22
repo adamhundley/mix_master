@@ -18,6 +18,5 @@ RSpec.feature "User edits a playlist" do
     expect(page).to have_content playlist_name
     expect(page).to have_content new_song.title
     expect(page).to_not have_content first.title
-
   end
 end
